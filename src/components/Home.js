@@ -47,7 +47,7 @@ const Section = styled.section`
     color: #434649;
     font-weight: 600;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 818px) {
     flex-direction: column;
     padding: 0 5px;
   }
@@ -60,7 +60,7 @@ const Layout = styled.div`
   grid-gap: 25px;
   grid-template-rows: auto;
   margin: 25px 0;
-  @media (max-width: 768px) {
+  @media (max-width: 818px) {
     display: flex;
     flex-direction: column;
     padding: 0 5px;

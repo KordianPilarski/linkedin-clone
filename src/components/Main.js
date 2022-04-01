@@ -286,7 +286,7 @@ const SocialActions = styled.div`
       margin-left: 4px;
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 818px) {
       span {
         margin-left: 8px;
       }

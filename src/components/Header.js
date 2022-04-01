@@ -146,7 +146,7 @@ const SearchIcon = styled.div`
 const Nav = styled.nav`
   margin-left: auto;
   display: block;
-  @media (max-width: 768px) {
+  @media (max-width: 818px) {
     position: fixed;
     left: 0;
     bottom: 0;
@@ -195,7 +195,7 @@ const NavList = styled.li`
       display: flex;
       align-items: center;
     }
-    @media (max-width: 768px) {
+    @media (max-width: 818px) {
       min-width: 70px;
     }
   }
@@ -220,6 +220,11 @@ const SignOut = styled.div`
   transition-duration: 167ms;
   text-align: center;
   display: none;
+
+  @media (max-width: 818px) {
+    border-radius: 5px 5px 0 0;
+    top: -40px;
+  }
 `;
 
 const User = styled(NavList)`

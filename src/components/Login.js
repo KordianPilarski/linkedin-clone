@@ -1,9 +1,12 @@
 import styled from "styled-components";
 import { connect } from "react-redux";
+import { signInAPI } from "../actions";
+import { Navigate } from "react-router";
 
-const Login = ({ props }) => {
+const Login = (props) => {
   return (
     <Container>
+      {/* {props.user && <Navigate to="/home" />} */}
       <Nav>
         <a href="/">
           <img src="/images/login-logo.svg" alt="nav logo"></img>
@@ -19,7 +22,7 @@ const Login = ({ props }) => {
           <img src="/images/login-hero.svg" alt="login logo" />
         </Hero>
         <Form>
-          <Google>
+          <Google onClick={() => props.signIn()}>
             <img src="./images/google.svg" alt="google sign in"></img>
             Sign in with Google
           </Google>
@@ -45,7 +48,7 @@ const Nav = styled.nav`
   & > a {
     width: 135px;
     height: 34px;
-    @media (max-width: 768px) {
+    @media (max-width: 818px) {
       padding: 0 5px;
     }
   }
@@ -97,7 +100,7 @@ const Section = styled.div`
   width: 100%;
   max-width: 1128px;
   margin: auto;
-  @media (max-width: 768px) {
+  @media (max-width: 818px) {
     margin: auto;
     min-height: 0px;
   }
@@ -112,7 +115,7 @@ const Hero = styled.div`
     color: #2977c9;
     font-weight: 200;
     line-height: 70px;
-    @media (max-width: 768px) {
+    @media (max-width: 818px) {
       text-align: center;
       font-size: 20px;
       width: 100%;
@@ -126,7 +129,7 @@ const Hero = styled.div`
     position: absolute;
     bottom: -2px;
     right: -150px;
-    @media (max-width: 768px) {
+    @media (max-width: 818px) {
       top: 230px;
       width: initial;
       position: initial;
@@ -139,7 +142,7 @@ const Form = styled.div`
   margin-top: 100px;
   width: 408px;
   z-index: 0;
-  @media (max-width: 768px) {
+  @media (max-width: 818px) {
     margin-top: 20px;
   }
 `;
@@ -166,9 +169,13 @@ const Google = styled.button`
 `;
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    user: state.userState.user,
+  };
 };
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+  signIn: () => dispatch(signInAPI()),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
