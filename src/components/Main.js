@@ -1,28 +1,33 @@
+import { connect } from "react-redux";
 import styled from "styled-components";
 
-const Main = () => {
+const Main = (props) => {
+  const userImgSource = `${
+    props.user ? props.user.photoURL : "./images/user.svg"
+  }`;
+
   return (
     <Container>
       <ShareBox>
         <div>
-          <img src="./images/user.svg" alt="user image" />
+          <img src={userImgSource} alt="user image" />
           <button>Start a post</button>
         </div>
         <div>
           <button>
-            <img src="./images/photo-icon.svg" alt="user image" />
+            <img src="./images/photo-icon.png" alt="user image" />
             <span>Photo</span>
           </button>
           <button>
-            <img src="./images/video-icon.svg" alt="video icon" />
+            <img src="./images/video-icon.png" alt="video icon" />
             <span>Video</span>
           </button>
           <button>
-            <img src="./images/event-icon.svg" alt="event image" />
+            <img src="./images/event-icon.png" alt="event image" />
             <span>Event</span>
           </button>
           <button>
-            <img src="./images/article-icon.svg" alt="article image" />
+            <img src="./images/article-icon.png" alt="article image" />
             <span>Write article</span>
           </button>
         </div>
@@ -31,7 +36,7 @@ const Main = () => {
         <Article>
           <SharedActor>
             <a>
-              <img src="./images/user.svg" alt="user image" />
+              <img src={userImgSource} alt="user image" />
               <div>
                 <span>Title</span>
                 <span>Info</span>
@@ -68,11 +73,11 @@ const Main = () => {
           </SocialCounts>
           <SocialActions>
             <button>
-              <img src="./images/like.svg" alt="like button " />
+              <img src="./images/like-icon.png" alt="like button " />
               <span>Like</span>
             </button>
             <button>
-              <img src="./images/comment.svg" alt="comment button " />
+              <img src="./images/comment-icon.png" alt="comment button " />
               <span>Comments</span>
             </button>
             <button>
@@ -294,4 +299,10 @@ const SocialActions = styled.div`
   }
 `;
 
-export default Main;
+const mapStateToProps = (state) => {
+  return {
+    user: state.userState.user,
+  };
+};
+
+export default connect(mapStateToProps)(Main);

@@ -11,6 +11,7 @@ export function signInAPI() {
     auth
       .signInWithPopup(provider)
       .then((payload) => {
+        console.log(payload.user);
         dispatch(setUser(payload.user));
       })
       .catch((error) => alert(error.message));
@@ -24,5 +25,18 @@ export function getUserAuth() {
         dispatch(setUser(user));
       }
     });
+  };
+}
+
+export function signOutAPI() {
+  return (dispatch) => {
+    auth
+      .signOut()
+      .then(() => {
+        dispatch(setUser(null));
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
 }
