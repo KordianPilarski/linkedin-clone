@@ -1,17 +1,38 @@
+import { useState } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
+import PostModal from "./PostModal";
 
 const Main = (props) => {
+  const [showModal, setShowModal] = useState("close");
   const userImgSource = `${
     props.user ? props.user.photoURL : "./images/user.svg"
   }`;
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (e.target !== e.currentTarget) {
+      return;
+    }
+
+    switch (showModal) {
+      case "open":
+        setShowModal("close");
+        break;
+      case "close":
+        setShowModal("open");
+        break;
+      default:
+        setShowModal("close");
+    }
+  };
 
   return (
     <Container>
       <ShareBox>
         <div>
           <img src={userImgSource} alt="user image" />
-          <button>Start a post</button>
+          <button onClick={handleClick}>Add a post</button>
         </div>
         <div>
           <button>
@@ -44,7 +65,7 @@ const Main = (props) => {
               </div>
             </a>
             <button>
-              <img src="./images/ellipsis.svg" alt="elipsis image" />
+              <img src="./images/ellipsis.png" alt="elipsis image" />
             </button>
           </SharedActor>
           <Description>desc</Description>
@@ -91,6 +112,9 @@ const Main = (props) => {
           </SocialActions>
         </Article>
       </div>
+      {showModal && (
+        <PostModal showModal={showModal} handleClick={handleClick} />
+      )}
     </Container>
   );
 };
@@ -129,6 +153,7 @@ const ShareBox = styled(CommonCard)`
       display: flex;
       align-items: center;
       font-weight: 600;
+      cursor: pointer;
     }
     &:first-child {
       display: flex;
@@ -148,6 +173,8 @@ const ShareBox = styled(CommonCard)`
         border: 1px solid rgba(0, 0, 0, 0.15);
         background-color: white;
         text-align: left;
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.12);
       }
     }
 

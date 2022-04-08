@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { signOutAPI } from "../actions";
 
 const Header = (props) => {
+  // console.log(`${props.user && props.user.photoURL}`);
   return (
     <Container>
       <Content>
@@ -185,6 +186,7 @@ const NavListWrap = styled.ul`
 const NavList = styled.li`
   display: flex;
   align-items: center;
+  cursor: pointer;
   a {
     align-items: center;
     background: transparent;
